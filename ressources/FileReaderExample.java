@@ -6,7 +6,7 @@ public class FileReaderExample
     try
     {
       // Le fichier d'entrée
-      File file = new File("Sujet.txt");    
+      File file = new File("corpus/Sujet.txt");    
       // Créer l'objet File Reader
       FileReader fr = new FileReader(file);  
       // Créer l'objet BufferedReader        
