@@ -91,7 +91,7 @@ public class XmlReaderExample{
  
            };  
  
-            saxParser.parse("corpus/regles.xml", handler);
+            saxParser.parse("ressources/corpus/regles.xml", handler);
  
         } catch (Exception e) {
             e.printStackTrace();

@@ -12,12 +12,6 @@ public class Reference {
         this.referenceWords = words;
     }
 
-    public Reference(String refName, List<String> words, WordType wordType){
-        this.referenceName = refName;
-        this.referenceWords = words;
-        this.type = wordType;
-    }
-
     public void setReferenceName(String referenceName) {
         this.referenceName = referenceName;
     }
@@ -28,6 +22,10 @@ public class Reference {
 
     public String getReferenceWord(int index) {
         return this.referenceWords.get(index);
+    }
+
+    public void print(){
+        System.out.println(referenceName + referenceWords);
     }
     
 }
