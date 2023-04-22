@@ -1,4 +1,5 @@
-public class Ponctuation extends Element {
+
+public class Ponctuation extends RuleElement {
     // Propriété spécifique à la sous-classe Ponctuation
     private String ponctuation;
 
@@ -8,7 +9,8 @@ public class Ponctuation extends Element {
     }
 
     @Override
-    public String toString(){
+    public String toString(boolean rand, boolean selectable) {
         return this.ponctuation;
+
     }
 }

@@ -1,21 +1,22 @@
+
 import java.util.List;
 import java.util.Random;
 
-public class Reference extends Element {
+public class Reference extends RuleElement {
 
     // Propriétés spécifiques à la sous-classe Reference
-    //private String referenceName;
+    // private String referenceName;
     private List<String> referenceWords;
     private int selected;
     private int position;
 
     // Constructeur
     public Reference(String setsName, List<String> Words, int pos) {
-        //this.referenceName = setsName;
+        // this.referenceName = setsName;
         this.referenceWords = Words;
         this.position = pos;
 
-        //select a random element
+        // select a random element
         selectRandom();
     }
 
@@ -27,12 +28,13 @@ public class Reference extends Element {
 
         if (this.selected != randomNumber) {
             this.selected = randomNumber;
-        }else{
+        } else {
             selectRandom();
         }
     }
+
     @Override
-    public void setPosition(int pos){
+    public void setPosition(int pos) {
         this.position = pos;
     }
 
@@ -43,10 +45,10 @@ public class Reference extends Element {
 
     @Override
     public String toString(boolean rand, boolean selectable) {
-        if(rand){
+        if (rand) {
             selectRandom();
         }
-        if(selectable){
+        if (selectable) {
             return "[ " + position + " - " + this.referenceWords.get(this.selected) + "]";
         }
         return this.referenceWords.get(this.selected);
