@@ -64,8 +64,5 @@ public class FileManager {
     public void fileToRule(String rulePath){
         
     }
-
-
-
     
 }

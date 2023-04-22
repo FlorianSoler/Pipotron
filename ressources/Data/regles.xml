@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<regles>
+   <regle>
+      <Element>Le premier</Element>
+      <Reference>Animal</Reference>
+      <Element>avait</Element>
+      <Reference>Attribut</Reference>
+      <Element>d'un</Element>
+      <Reference>Couleur</Reference>
+      <Reference>Descriptif</Reference>
+      <Element>et</Element>
+      <Reference>Anatomie</Reference>
+      <Reference>Couleur</Reference>
+      <Ponct>.</Ponct>
+   </regle>
+   <regle>
+      <Element>Un</Element>
+      <Reference>Animal</Reference>
+      <Element>qui est</Element>
+      <Reference>Couleur</Reference>
+      <Ponct>.</Ponct>
+   </regle>
+   <regle>
+      <Element>Il est</Element>
+      <Reference>Descriptif</Reference>
+      <Element>de voir un</Element>
+      <Reference>Animal</Reference>
+      <Element>avec</Element>
+      <Reference>Anatomie</Reference>
+      <Element>de couleur</Element>
+      <Reference>CouleurF</Reference>
+      <Ponct>.</Ponct>
+   </regle>
+</regles>
