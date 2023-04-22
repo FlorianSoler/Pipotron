@@ -1,31 +1,55 @@
-import java.security.PublicKey;
 import java.util.List;
+import java.util.Random;
 
-public class Reference {
+public class Reference extends Element {
 
-    private String referenceName;
+    // Propriétés spécifiques à la sous-classe Reference
+    //private String referenceName;
     private List<String> referenceWords;
-    private WordType type; // not implemented
+    private int selected;
+    private int position;
 
-    public Reference(String refName, List<String> words){
-        this.referenceName = refName;
-        this.referenceWords = words;
+    // Constructeur
+    public Reference(String setsName, List<String> Words, int pos) {
+        //this.referenceName = setsName;
+        this.referenceWords = Words;
+        this.position = pos;
+
+        //select a random element
+        selectRandom();
     }
 
-    public void setReferenceName(String referenceName) {
-        this.referenceName = referenceName;
+    // Select a random int from the list element range
+    public void selectRandom() {
+
+        Random random = new Random();
+        int randomNumber = random.nextInt(this.referenceWords.size());
+
+        if (this.selected != randomNumber) {
+            this.selected = randomNumber;
+        }else{
+            selectRandom();
+        }
+    }
+    @Override
+    public void setPosition(int pos){
+        this.position = pos;
     }
 
-    public void setReferenceWords(List<String> referenceWords) {
-        this.referenceWords = referenceWords;
+    @Override
+    public String toString() {
+        return this.referenceWords.get(this.selected);
     }
 
-    public String getReferenceWord(int index) {
-        return this.referenceWords.get(index);
+    @Override
+    public String toString(boolean rand, boolean selectable) {
+        if(rand){
+            selectRandom();
+        }
+        if(selectable){
+            return "[ " + position + " - " + this.referenceWords.get(this.selected) + "]";
+        }
+        return this.referenceWords.get(this.selected);
     }
 
-    public void print(){
-        System.out.println(referenceName + referenceWords);
-    }
-    
 }

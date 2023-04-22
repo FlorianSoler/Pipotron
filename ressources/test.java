@@ -3,18 +3,23 @@ import java.util.List;
 
 public class test {
     public static void main(String[] args) {
+
         FileManager fM = new FileManager();
+        Reference ref = fM.loadReference("Data/Reference/Animal.txt");
 
-        //fM.fileToReference("corpus/Couleur.txt");
+        List<Element> myelement = new ArrayList<>();
 
-        List<String> PATHS = new ArrayList<>();
-        PATHS.add("corpus/Couleur.txt");
-        PATHS.add("corpus/Anatomie.txt");
-
-        fM.loadMultipleRef(PATHS);
-        fM.fileToRule("corpus/refles.xml");
+        myelement.add(new Ponctuation("."));
+        myelement.add(new Connecteur("Le"));
+        myelement.add(ref);
         
-        fM.printRefs();
+        System.out.println(myelement.get(0).getClass());
+        System.out.println(myelement.get(1).toString());
+        System.out.println(myelement.get(2).toString());
+        System.out.println(myelement.get(2).toString(false, true));
+        System.out.println(myelement.get(2).toString(true, true));
+
+
 
     }
 }
