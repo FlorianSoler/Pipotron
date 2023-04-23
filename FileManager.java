@@ -26,7 +26,7 @@ public class FileManager {
     public FileManager() {
     }
 
-    public Reference loadReference(String refPath) {
+    private Reference loadReference(String refPath) {
 
         try {
             File file = new File(refPath);
