@@ -64,7 +64,7 @@ public class FileManager {
         String referenceFilename = element.getElementsByTagName(XML_REFERENCE_TAG).item(position).getTextContent();
         String referencePath = XML_REFERENCE_PATH_FORMAT + referenceFilename + ".txt";
         Reference reference = loadReference(referencePath);
-        reference.setPosition(position);
+        reference.setPosition(position + 1);
 
         return reference;
     }

@@ -6,6 +6,7 @@ public class Reference extends RuleElement {
     private List<String> words;
     private int selected;
     private int position;
+    private Random random = new Random();
 
     public Reference(List<String> words, int pos) {
 
@@ -17,9 +18,7 @@ public class Reference extends RuleElement {
 
     @Override
     public void selectRandom() {
-
-        Random random = new Random();
-        int randomNumber = random.nextInt(this.words.size());
+        int randomNumber = this.random.nextInt(this.words.size());
 
         if (this.selected != randomNumber) {
             this.selected = randomNumber;
