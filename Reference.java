@@ -1,30 +1,25 @@
-
 import java.util.List;
 import java.util.Random;
 
 public class Reference extends RuleElement {
 
-    // Propriétés spécifiques à la sous-classe Reference
-    // private String referenceName;
-    private List<String> referenceWords;
+    private List<String> words;
     private int selected;
     private int position;
 
-    // Constructeur
-    public Reference(String setsName, List<String> Words, int pos) {
-        // this.referenceName = setsName;
-        this.referenceWords = Words;
+    public Reference(List<String> words, int pos) {
+
+        this.words = words;
         this.position = pos;
 
-        // select a random element
         selectRandom();
     }
 
-    // Select a random int from the list element range
+    @Override
     public void selectRandom() {
 
         Random random = new Random();
-        int randomNumber = random.nextInt(this.referenceWords.size());
+        int randomNumber = random.nextInt(this.words.size());
 
         if (this.selected != randomNumber) {
             this.selected = randomNumber;
@@ -39,19 +34,25 @@ public class Reference extends RuleElement {
     }
 
     @Override
-    public String toString() {
-        return this.referenceWords.get(this.selected);
+    public int getPosition() {
+        return position;
     }
 
     @Override
-    public String toString(boolean rand, boolean selectable) {
-        if (rand) {
+    public String toString() {
+        return this.words.get(this.selected);
+    }
+
+    @Override
+    public String toString(boolean selectRandom, boolean isSelectable) {
+        if (selectRandom) {
             selectRandom();
         }
-        if (selectable) {
-            return "[ " + position + " - " + this.referenceWords.get(this.selected) + "]";
+        String result = this.words.get(this.selected);
+        if (isSelectable) {
+            result = String.format("[ %d - %s ]", position, result);
         }
-        return this.referenceWords.get(this.selected);
+        return result;
     }
 
 }

@@ -8,17 +8,34 @@ public class Rule {
         this.ruleElements = elements;
     }
 
-    public String toString(boolean rand, boolean selectable) {
-        String recap = "";
-        for (RuleElement ruleElement : ruleElements) {
-            if (ruleElement instanceof Ponctuation) {
-                recap += ruleElement.toString(rand, selectable);
-                continue;
+    public void changeSelectedReference(int position){
+        for (RuleElement ruleElement : this.ruleElements) {
+            if(ruleElement instanceof Reference){
+                if(ruleElement.getPosition() == position){
+                    ruleElement.selectRandom();
+                    break;
+                }
             }
-            recap += " " + ruleElement.toString(rand, selectable);
-
         }
-
-        return recap;
+        // position++;
+        // if(position <= this.ruleElements.size()){
+        //     this.ruleElements.get(position).selectRandom();
+        // }
+        
     }
+
+    public String toString(boolean selectRandom, boolean isSelectable) {
+        StringBuilder recapBuilder = new StringBuilder();
+        for (RuleElement ruleElement :  this.ruleElements) {
+            if (ruleElement instanceof Ponctuation) {
+                recapBuilder.append(ruleElement.toString(selectRandom, isSelectable));
+            } else {
+                recapBuilder.append(" ").append(ruleElement.toString(selectRandom, isSelectable));
+            }
+
+            
+        }
+        return recapBuilder.toString();
+    }
+
 }

@@ -1,4 +1,3 @@
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,37 +11,38 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+
 import java.io.File;
 import java.io.IOException;
 
 public class FileManager {
+
+    private static final String XML_RULES_TAG = "regle";
+    private static final String XML_PONCTUATION_TAG = "Ponct";
+    private static final String XML_CONNECTOR_TAG = "Element";
+    private static final String XML_REFERENCE_TAG = "Reference";
+    private static final String XML_REFERENCE_PATH_FORMAT = "Data/Reference/";
+
     public FileManager() {
     }
 
     public Reference loadReference(String refPath) {
 
         try {
-            // Le fichier d'entrée
             File file = new File(refPath);
 
-            String fname = file.getName();
-            fname = fname.substring(0, fname.lastIndexOf("."));
-
-            // Créer l'objet File Reader
             FileReader fr = new FileReader(file);
-            // Créer l'objet BufferedReader
-            BufferedReader br = new BufferedReader(fr);
+            BufferedReader bufferedReader = new BufferedReader(fr);
+
+            List<String> Words = new ArrayList<>();
 
             String line;
-
-            List<String> listOfWords = new ArrayList<>();
-
-            while ((line = br.readLine()) != null) {
-                listOfWords.add(line);
+            while ((line = bufferedReader.readLine()) != null) {
+                Words.add(line);
             }
             fr.close();
 
-            return new Reference(fname, listOfWords, 0);
+            return new Reference(Words, 0);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -50,60 +50,65 @@ public class FileManager {
         return null;
     }
 
-    public List<Rule> loadRules(String rulePath) {
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        ArrayList<Rule> curRules = new ArrayList<Rule>();
+    private Document loadXML(String path) throws ParserConfigurationException, SAXException, IOException {
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
 
-        try {
+        Document document = documentBuilder.parse(new File(path));
+        document.getDocumentElement().normalize();
+        return document;
 
-            DocumentBuilder db = dbf.newDocumentBuilder();
+    }
 
-            Document doc = db.parse(new File(rulePath));
+    private Reference extractReference(int position, Element element) {
+        String referenceFilename = element.getElementsByTagName(XML_REFERENCE_TAG).item(position).getTextContent();
+        String referencePath = XML_REFERENCE_PATH_FORMAT + referenceFilename + ".txt";
+        Reference reference = loadReference(referencePath);
+        reference.setPosition(position);
 
-            doc.getDocumentElement().normalize();
+        return reference;
+    }
 
-            NodeList list = doc.getElementsByTagName("regle");
+    private List<RuleElement> extractRuleFromElement(Element element) {
+        List<RuleElement> ruleElements = new ArrayList<>();
+        int elementLength = element.getElementsByTagName(XML_CONNECTOR_TAG).getLength();
 
-            for (int temp = 0; temp < list.getLength(); temp++) {
-                Node node = list.item(temp);
+        for (int i = 0; i < elementLength; i++) {
+            String connector = element.getElementsByTagName(XML_CONNECTOR_TAG).item(i).getTextContent();
+            Reference reference = extractReference(i, element);
 
-                List<RuleElement> myelement = new ArrayList<>();
+            ruleElements.add(new Connecteur(connector));
+            ruleElements.add(reference);
 
-                String ponct;
-
-                if (node.getNodeType() == Node.ELEMENT_NODE) {
-
-                    Element element = (Element) node;
-
-                    int elemLength = element.getElementsByTagName("Element").getLength();
-
-                    for (int i = 0; i < elemLength; i++) {
-                        String curElem = element.getElementsByTagName("Element").item(i).getTextContent();
-                        String curRef = element.getElementsByTagName("Reference").item(i).getTextContent();
-
-                        String refPath = "Data/Reference/" + curRef + ".txt";
-
-                        myelement.add(new Connecteur(curElem));
-
-                        Reference Ref = loadReference(refPath);
-                        Ref.setPosition(i);
-                        myelement.add(Ref);
-                    }
-
-                    ponct = element.getElementsByTagName("Ponct").item(0).getTextContent();
-                    myelement.add(new Ponctuation(ponct));
-
-                }
-
-                curRules.add(new Rule(myelement));
-
-            }
-
-        } catch (ParserConfigurationException | SAXException | IOException e) {
-            e.printStackTrace();
         }
 
-        return curRules;
+        String ponctuation = element.getElementsByTagName(XML_PONCTUATION_TAG).item(0).getTextContent();
+        ruleElements.add(new Ponctuation(ponctuation));
+
+
+        return ruleElements;
+    }
+
+    public List<Rule> loadRules(String rulePath) throws ParserConfigurationException, SAXException, IOException {
+
+        Document document = loadXML(rulePath);
+        ArrayList<Rule> rules = new ArrayList<Rule>();
+
+        NodeList list = document.getElementsByTagName(XML_RULES_TAG);
+
+        for (int temp = 0; temp < list.getLength(); temp++) {
+            Node ruleNode = list.item(temp);
+
+            if (ruleNode.getNodeType() == Node.ELEMENT_NODE) {
+
+                Element element = (Element) ruleNode;
+                List<RuleElement> ruleElements = extractRuleFromElement(element);
+                rules.add(new Rule(ruleElements));
+            }
+        }
+
+        return rules;
+
     }
 
 }
