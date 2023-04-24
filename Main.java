@@ -3,6 +3,5 @@ public class Main {
         InteractivePipotron interactivepipotron = new InteractivePipotron();
         interactivepipotron.initializePipotron();
         interactivepipotron.startInteraction();
-
     }
 }

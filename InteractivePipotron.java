@@ -56,7 +56,7 @@ public class InteractivePipotron {
                 System.out.println("");
                 interractionMode();
             case 1:
-
+                System.out.println("Put 0 if you want to exit back.");
                 System.out.println("");
                 System.out.println(this.sentence.reGenerateInteractiveSentence(inputInt));
                 System.out.println("");

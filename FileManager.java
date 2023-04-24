@@ -44,52 +44,74 @@ public class FileManager {
 
             return new Reference(Words, 0);
 
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException error) {
+            error.printStackTrace();
+            System.exit(1);
         }
         return null;
     }
 
-    private Document loadXML(String path) throws ParserConfigurationException, SAXException, IOException {
-        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-
-        Document document = documentBuilder.parse(new File(path));
-        document.getDocumentElement().normalize();
-        return document;
-
+    private Document loadXML(String path) {
+        try{
+            DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+            
+            File file = new File(path);
+            Document document = documentBuilder.parse(file);
+            document.getDocumentElement().normalize();
+            return document;
+        }
+        catch(ParserConfigurationException | SAXException | IOException | Error error){
+            error.printStackTrace();
+            System.exit(1);
+        }
+        return null;
     }
 
-    private Reference extractReference(int position, Element element) {
+    private Reference extractReference(int position, Element element) throws Exception {
+
         String referenceFilename = element.getElementsByTagName(XML_REFERENCE_TAG).item(position).getTextContent();
         String referencePath = XML_REFERENCE_PATH_FORMAT + referenceFilename + ".txt";
         Reference reference = loadReference(referencePath);
+
+        if (reference == null) {
+            throw new Exception("Unable to Load Reference");
+        }
+
         reference.setPosition(position + 1);
 
         return reference;
     }
 
-    private List<RuleElement> extractRuleFromElement(Element element) {
+    private List<RuleElement> extractRuleFromElement(Element element) throws Exception {
+
         List<RuleElement> ruleElements = new ArrayList<>();
         int elementLength = element.getElementsByTagName(XML_CONNECTOR_TAG).getLength();
 
         for (int i = 0; i < elementLength; i++) {
             String connector = element.getElementsByTagName(XML_CONNECTOR_TAG).item(i).getTextContent();
-            Reference reference = extractReference(i, element);
 
-            ruleElements.add(new Connecteur(connector));
-            ruleElements.add(reference);
+            Reference reference;
+
+            try {
+                reference = extractReference(i, element);
+                ruleElements.add(new Connecteur(connector));
+                ruleElements.add(reference);
+            } catch (Error err) {
+                System.err.println(err);
+                System.exit(1);
+            }
 
         }
 
         String ponctuation = element.getElementsByTagName(XML_PONCTUATION_TAG).item(0).getTextContent();
         ruleElements.add(new Ponctuation(ponctuation));
 
-
         return ruleElements;
+
     }
 
-    public List<Rule> loadRules(String rulePath) throws ParserConfigurationException, SAXException, IOException {
+    public List<Rule> loadRules(String rulePath) throws Exception {
 
         Document document = loadXML(rulePath);
         ArrayList<Rule> rules = new ArrayList<Rule>();
