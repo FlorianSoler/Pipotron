@@ -32,4 +32,4 @@ Il est également possible d'ajouter une fonctionnalité permettant à l'utilisa
 
 Avant l'implémentation, il est nécessaire de modéliser le programme en UML et d'appliquer le diagramme lors de l'implémentation. La correspondance entre la modélisation et l'implémentation sera vérifiée.
 
-![UML](UML\PipotronUML.svg)
+![UML](https://github.com/FlorianSoler/Pipotron/blob/main/UML/PipotronUML.svg)
