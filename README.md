@@ -1,5 +1,5 @@
 # How to use me ?
- Juste compile the "main.java" with `javac` or using Visual Studio Code
+ Just compile the "main.java" with `javac` or using Visual Studio Code
 
 # Sujet : Pipotron - Programme de génération de phrases
 ## Partie I - Pipotron
