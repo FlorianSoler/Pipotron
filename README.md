@@ -4,7 +4,7 @@
 # Sujet : Pipotron - Programme de génération de phrases
 ## Partie I - Pipotron
 
-Dans cette section, vous devez créer un programme Java capable de lire les fichiers de règles et de portions de phrases fournis dans l'archive du projet et les utiliser pour générer des phrases automatiquement.
+Le programme Java doit être capable de lire les fichiers de règles et de portions de phrases fournis dans l'archive du projet et les utiliser pour générer des phrases automatiquement.
 
 Le programme doit :
 
@@ -17,6 +17,8 @@ Deux exemples de code source sont fournis : FileReaderExample.java et XmlReaderE
 ## Partie II - Pipotron interactif
 
 Une fois la Partie I terminée, une étape supplémentaire est requise après la génération de chaque phrase. Cette étape permet à l'utilisateur de visualiser le résultat et de demander une réécriture partielle si nécessaire.
+
+![interactive](https://github.com/FlorianSoler/Pipotron/blob/Dev/UML/Interraction.png)
 
 L'utilisateur peut :
 
