@@ -61,5 +61,8 @@ public class Reference extends RuleElement {
         }
         return result;
     }
+    
+    //cursed fonction but i have the right to OVERRIDE IT !
+    //https://media.tenor.com/NYgw-6Q_LicAAAAd/funny-blades-and-sorcery.gif ;)
 
 }

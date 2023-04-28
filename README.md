@@ -1,29 +1,33 @@
-# Sujet : Pipotron - Programme de génération de phrases
+# How to use me ?
+ Juste compile the "main.java" with `javac` or using Visual Studio Code
 
+# Sujet : Pipotron - Programme de génération de phrases
 ## Partie I - Pipotron
 
-In this section, you are asked to create a Java program capable of reading the rule and phrase portion files provided in the project archive and use them to generate sentences automatically.
+Dans cette section, vous devez créer un programme Java capable de lire les fichiers de règles et de portions de phrases fournis dans l'archive du projet et les utiliser pour générer des phrases automatiquement.
 
-The program must:
+Le programme doit :
 
-- Read the provided files
-- Select a rule at random and apply it to generate a sentence
-- Repeat the operation until the desired number of sentences is reached
+- Lire les fichiers fournis
+- Sélectionner une règle au hasard et l'appliquer pour générer une phrase
+- Répéter l'opération jusqu'à atteindre le nombre de phrases désiré
 
-Two source code examples are provided: FileReaderExample.java and XmlReaderExample.java.
+Deux exemples de code source sont fournis : FileReaderExample.java et XmlReaderExample.java.
 
-## Partie II - Interactive Pipotron
+## Partie II - Pipotron interactif
 
-Once Part I is completed, an additional step is required after generating each sentence. This step allows the user to view the result and request a partial rewrite if necessary.
+Une fois la Partie I terminée, une étape supplémentaire est requise après la génération de chaque phrase. Cette étape permet à l'utilisateur de visualiser le résultat et de demander une réécriture partielle si nécessaire.
 
-The user can:
+L'utilisateur peut :
 
-- View the generated sentence
-- Request the regeneration of a portion of the sentence by indicating the associated number
-- Enter 0 to validate the sentence and move on to generating the next sentence
+- Visualiser la phrase générée
+- Demander la régénération d'une partie de la phrase en indiquant le numéro associé
+- Entrer 0 pour valider la phrase et passer à la génération de la phrase suivante
 
-It is also possible to add a feature allowing the user to directly rewrite a portion of the sentence.
+Il est également possible d'ajouter une fonctionnalité permettant à l'utilisateur de réécrire directement une partie de la phrase.
 
 ## Consignes et contraintes d'implémentation
 
-Before implementation, it is necessary to model the program in UML and apply the diagram during implementation. The correspondence between modeling and implementation will be verified.
+Avant l'implémentation, il est nécessaire de modéliser le programme en UML et d'appliquer le diagramme lors de l'implémentation. La correspondance entre la modélisation et l'implémentation sera vérifiée.
+
+![UML](UML\PipotronUML.svg)
