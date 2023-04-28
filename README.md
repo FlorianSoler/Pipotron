@@ -4,7 +4,7 @@
 # Sujet : Pipotron - Programme de génération de phrases
 ## Partie I - Pipotron
 
-Dans cette section, vous devez créer un programme Java capable de lire les fichiers de règles et de portions de phrases fournis dans l'archive du projet et les utiliser pour générer des phrases automatiquement.
+Le programme Java doit être capable de lire les fichiers de règles et de portions de phrases fournis dans l'archive du projet et les utiliser pour générer des phrases automatiquement.
 
 Le programme doit :
 
