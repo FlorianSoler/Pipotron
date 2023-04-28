@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram name="Page-1" id="uTF_RYX4pTSIt206OKAp">
-        <mxGraphModel dx="3634" dy="2368" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="607" dy="1482" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -153,10 +153,10 @@
                 <mxCell id="9taP5eCOD0S-IgPT_sHh-19" value="+ startInteraction () : void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="9taP5eCOD0S-IgPT_sHh-14" vertex="1">
                     <mxGeometry y="138" width="300" height="26" as="geometry"/>
                 </mxCell>
-                <mxCell id="140" value="- interactionMode () : void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="9taP5eCOD0S-IgPT_sHh-14">
+                <mxCell id="140" value="- interactionMode () : void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="9taP5eCOD0S-IgPT_sHh-14" vertex="1">
                     <mxGeometry y="164" width="300" height="26" as="geometry"/>
                 </mxCell>
-                <mxCell id="141" value="- interactiveSentenceMode () : void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="9taP5eCOD0S-IgPT_sHh-14">
+                <mxCell id="141" value="- interactiveSentenceMode () : void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="9taP5eCOD0S-IgPT_sHh-14" vertex="1">
                     <mxGeometry y="190" width="300" height="26" as="geometry"/>
                 </mxCell>
                 <mxCell id="41" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=4;endArrow=none;endFill=0;" parent="1" source="2" target="9taP5eCOD0S-IgPT_sHh-1" edge="1">
@@ -215,7 +215,7 @@
                         <mxPoint x="1780" y="128" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="29" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=0;strokeWidth=4;" parent="1" source="Hf4ZEuIIgJbTYPRIJL2N-50" target="2" edge="1">
+                <mxCell id="29" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=0;strokeWidth=4;endSize=19;" parent="1" source="Hf4ZEuIIgJbTYPRIJL2N-50" target="2" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="1896.490022070995" y="93.99999999999977" as="sourcePoint"/>
                         <mxPoint x="1759.8999999999996" y="137.99199999999996" as="targetPoint"/>
