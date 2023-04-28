@@ -42,55 +42,68 @@ public class InteractivePipotron {
 
         String output = stringBuilder.toString();
         System.out.print(output);
+        
+        if (this.scanner.hasNextInt()) {
+            int inputInt = this.scanner.nextInt();
 
-        int inputInt = this.scanner.nextInt();
+            switch (inputInt) {
+                case -1:
+                    System.exit(0);
+                    break;
+                case 0:
+                    this.sentence.selectRandomRule();
+                    System.out.println("");
+                    System.out.println(this.sentence.generateSentence());
+                    System.out.println("");
+                    interractionMode();
+                case 1:
+                    System.out.println("Put 0 if you want to exit back.");
+                    System.out.println("");
+                    System.out.println(this.sentence.reGenerateInteractiveSentence(inputInt));
+                    System.out.println("");
 
-        switch (inputInt) {
-            case -1:
-                System.exit(0);
-                break;
-            case 0:
-                this.sentence.selectRandomRule();
-                System.out.println("");
-                System.out.println(this.sentence.generateSentence());
-                System.out.println("");
-                interractionMode();
-            case 1:
-                System.out.println("Put 0 if you want to exit back.");
-                System.out.println("");
-                System.out.println(this.sentence.reGenerateInteractiveSentence(inputInt));
-                System.out.println("");
-
-                interactiveSentenceMode();
-                break;
-            default:
-                System.out.print("Unsuported command.");
-                interractionMode();
+                    interactiveSentenceMode();
+                    break;
+                default:
+                    System.out.print("Unsuported command.");
+                    interractionMode();
+            }
+        } else {
+            System.out.println("Invalid input, please enter an integer.");
+            this.scanner.next();
+            interractionMode();
         }
     }
 
     private void interactiveSentenceMode() {
 
         System.out.print("Enter section to regenerate : ");
-        int inputInt = this.scanner.nextInt();
+        if (this.scanner.hasNextInt()) {
+            int inputInt = this.scanner.nextInt();
 
-        switch (inputInt) {
-            case 0:
-                System.out.println("");
-                System.out.println(this.sentence.generateSentence());
-                System.out.println("");
-                interractionMode();
-            default:
-                if (inputInt > 0) {
+            switch (inputInt) {
+                case 0:
                     System.out.println("");
-                    System.out.println(this.sentence.reGenerateInteractiveSentence(inputInt));
+                    System.out.println(this.sentence.generateSentence());
                     System.out.println("");
-                    interactiveSentenceMode();
-                }
-                else{
-                    System.out.print("Unsuported command.");
-                    interactiveSentenceMode();
-                }
+                    interractionMode();
+                default:
+                    if (inputInt > 0) {
+                        System.out.println("");
+                        System.out.println(this.sentence.reGenerateInteractiveSentence(inputInt));
+                        System.out.println("");
+                        interactiveSentenceMode();
+                    }
+                    else{
+                        System.out.print("Unsuported command.");
+                        interactiveSentenceMode();
+                    }
+            }
+
+        } else {
+            System.out.println("Invalid input, please enter an integer.");
+            this.scanner.next();
+            interactiveSentenceMode();
         }
     }
 

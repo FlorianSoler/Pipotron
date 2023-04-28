@@ -6,6 +6,12 @@ public class Ponctuation extends RuleElement {
         this.ponctuation = ponct;
     }
 
+    
+    /** return the string of the pocutation element
+     * @param rand
+     * @param selectable
+     * @return String
+     */
     @Override
     public String toString(boolean rand, boolean selectable) {
         return this.ponctuation;

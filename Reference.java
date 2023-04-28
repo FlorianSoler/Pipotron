@@ -8,6 +8,7 @@ public class Reference extends RuleElement {
     private int position;
     private Random random = new Random();
 
+    //constructor
     public Reference(List<String> words, int pos) {
 
         this.words = words;
@@ -16,6 +17,7 @@ public class Reference extends RuleElement {
         selectRandom();
     }
 
+    //used to set the potion to a random index in the list
     @Override
     public void selectRandom() {
         int randomNumber = this.random.nextInt(this.words.size());
@@ -27,6 +29,10 @@ public class Reference extends RuleElement {
         }
     }
 
+    
+    /** used to give the potion of this element in the RuleElement list
+     * @param pos position in the list from the other element
+     */
     @Override
     public void setPosition(int pos) {
         this.position = pos;
@@ -42,6 +48,8 @@ public class Reference extends RuleElement {
         return this.words.get(this.selected);
     }
 
+    //use to the current selected string from the reference or a random one
+    //and to give the string if its selecatable "[pos + selectedword]"
     @Override
     public String toString(boolean selectRandom, boolean isSelectable) {
         if (selectRandom) {

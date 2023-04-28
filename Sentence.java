@@ -9,13 +9,20 @@ public class Sentence {
 
     private Random random = new Random();
 
+    //constructor
     public Sentence() {
     }
 
+
+    
+    /** 
+     * @param path
+     */
     public void setRulesPath(String path) {
         this.rulesPath = path;
     }
 
+    //Load Rules Using FileManger
     void loadRules() {
         try {
             this.rules = this.fileManager.loadRules(rulesPath);
@@ -24,6 +31,7 @@ public class Sentence {
         }
     }
 
+    //this fonction is use to select a random rule from the loaded rules
     public void selectRandomRule() {
         try {
             int randomNumber = this.random.nextInt(this.rules.size());
@@ -41,6 +49,7 @@ public class Sentence {
         }
     }
 
+    // generate a simple sentece from the selected rule
     public String generateSentence() {
         try {
             if (selectedRule != null) {
@@ -55,6 +64,7 @@ public class Sentence {
         }
     }
 
+    // generate a interactive sentece from the selected rule
     public String generateInteractiveSentence() {
         try {
             if (selectedRule != null) {
@@ -69,6 +79,7 @@ public class Sentence {
         }
     }
 
+    //regenerate a interactive rule at a givven position in the sentence
     public String reGenerateInteractiveSentence(int position){
         selectedRule.changeSelectedReference(position);
         return generateInteractiveSentence();

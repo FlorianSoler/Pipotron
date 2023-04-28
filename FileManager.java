@@ -17,6 +17,7 @@ import java.io.IOException;
 
 public class FileManager {
 
+    //give the tag name to look for each tag
     private static final String XML_RULES_TAG = "regle";
     private static final String XML_PONCTUATION_TAG = "Ponct";
     private static final String XML_CONNECTOR_TAG = "Element";
@@ -26,6 +27,10 @@ public class FileManager {
     public FileManager() {
     }
 
+    /** this fonction used to load a reference from a given txt file
+     * @param refPath
+     * @return Reference
+     */
     private Reference loadReference(String refPath) {
 
         try {
@@ -45,31 +50,37 @@ public class FileManager {
             return new Reference(Words, 0);
 
         } catch (IOException error) {
+            //stop the programm because it could not load a reference
             error.printStackTrace();
             System.exit(1);
         }
         return null;
     }
 
+    // this fonction is used to load xml into a document for further processing
     private Document loadXML(String path) {
         try{
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
             
+            //parsing an normalizing xml file
             File file = new File(path);
             Document document = documentBuilder.parse(file);
             document.getDocumentElement().normalize();
             return document;
         }
         catch(ParserConfigurationException | SAXException | IOException | Error error){
+            //stop the programm because it could not load the xml
             error.printStackTrace();
             System.exit(1);
         }
         return null;
     }
 
+    //extractReference is used to transform a reference name and load it from the name file
     private Reference extractReference(int position, Element element) throws Exception {
 
+        //get the path of the file
         String referenceFilename = element.getElementsByTagName(XML_REFERENCE_TAG).item(position).getTextContent();
         String referencePath = XML_REFERENCE_PATH_FORMAT + referenceFilename + ".txt";
         Reference reference = loadReference(referencePath);
@@ -83,11 +94,14 @@ public class FileManager {
         return reference;
     }
 
+    //extractRuleFromElement is used to creat the list of RuleElement in order to from rule
     private List<RuleElement> extractRuleFromElement(Element element) throws Exception {
 
+        //creating the list of RuleElement and geting every connector xml tag
         List<RuleElement> ruleElements = new ArrayList<>();
         int elementLength = element.getElementsByTagName(XML_CONNECTOR_TAG).getLength();
 
+        //iterate trough every xml tag
         for (int i = 0; i < elementLength; i++) {
             String connector = element.getElementsByTagName(XML_CONNECTOR_TAG).item(i).getTextContent();
 
@@ -111,13 +125,16 @@ public class FileManager {
 
     }
 
+    //load rule is used to transfrom xml to rules
     public List<Rule> loadRules(String rulePath) throws Exception {
-
+        
+        //load xml
         Document document = loadXML(rulePath);
         ArrayList<Rule> rules = new ArrayList<Rule>();
 
         NodeList list = document.getElementsByTagName(XML_RULES_TAG);
 
+        //iterate over every rule tag
         for (int temp = 0; temp < list.getLength(); temp++) {
             Node ruleNode = list.item(temp);
 
